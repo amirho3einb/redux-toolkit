@@ -10,12 +10,17 @@ const TodoList = () => {
   //   { id: 4, title: "todo4", completed: false },
   //   { id: 5, title: "todo5", completed: false },
   // ];
-  const todos = useSelector(state => state.todos)
+  const { todos } = useSelector((state) => state.todos);
 
   return (
     <ul className="list-group">
       {todos.map((todo) => (
-        <TodoItem id={todo.id} title={todo.title} completed={todo.completed} />
+        <TodoItem
+          id={todo.id}
+          title={todo.title}
+          completed={todo.completed}
+          key={todo.id}
+        />
       ))}
     </ul>
   );
