@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { decrement, increment } from "./counter/counterSlice";
+import { decrement, increment } from "../features/counter/counterSlice";
 
 const CounterComponent = () => {
   const [inputValue, setInputValue] = useState("");
