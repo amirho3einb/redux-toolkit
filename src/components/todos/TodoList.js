@@ -1,7 +1,7 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import TodoItem from "./TodoItem";
-
+import { getAsyncTodos } from "../../features/todos/todosSlice";
 const TodoList = () => {
   // const todos = [
   //   { id: 1, title: "todo1", completed: false },
@@ -10,8 +10,15 @@ const TodoList = () => {
   //   { id: 4, title: "todo4", completed: false },
   //   { id: 5, title: "todo5", completed: false },
   // ];
-  const { todos } = useSelector((state) => state.todos);
+  const { todos, loading, error } = useSelector((state) => state.todos);
 
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAsyncTodos());
+  }, []);
+if(loading) return <p>loading</p>
+if(error) return <p>error</p>
   return (
     <ul className="list-group">
       {todos.map((todo) => (
