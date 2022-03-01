@@ -18,7 +18,7 @@ const TodoList = () => {
     dispatch(getAsyncTodos());
   }, []);
 if(loading) return <p>loading</p>
-if(error) return <p>error</p>
+if(error) return <p>{error}</p>
   return (
     <ul className="list-group">
       {todos.map((todo) => (

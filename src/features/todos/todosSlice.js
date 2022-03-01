@@ -5,10 +5,10 @@ export const getAsyncTodos = createAsyncThunk(
   "todos/getAsyncTodos",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get("http://localhost:3001/todos");
+      const response = await axios.get("http://localhost:3001/todossss");
       return response.data;
     } catch (error) {
-      return rejectWithValue([], error.message);
+      return rejectWithValue(error);
     }
   }
 );
@@ -96,7 +96,12 @@ const todosSlice = createSlice({
       return { ...state, todos: [], loading: true, error: null };
     },
     [getAsyncTodos.rejected]: (state, action) => {
-      return { ...state, todos: [], loading: false, error: action.error };
+      return {
+        ...state,
+        todos: [],
+        loading: false,
+        error: action.payload.message,
+      };
     },
     [addAsyncTodos.fulfilled]: (state, action) => {
       state.todos.push(action.payload);
